@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <Title>Form Validate</Title>
+    <script type="text/javascript" src="jquery-3.4.1.min.js"></script>
+    <script type="text/javascript"
+        src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.1/jquery.validate.min.js"></script>
+    <link rel="stylesheet" href="bootstrap-4.3.1-dist\css\bootstrap.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <!--
+    <link rel="stylesheet" href="bootstrap-4.3.1-dist\css\bootstrap-grid.css">
+    <link rel="stylesheet" href="bootstrap-4.3.1-dist\css\bootstrap-grid.min.css">
+    <link rel="stylesheet" href="bootstrap-4.3.1-dist\css\bootstrap-reboot.css">
+    <link rel="stylesheet" href="bootstrap-4.3.1-dist\css\bootstrap-reboot.min.css">
+    -->
+</head>
+
+<body>
+    <form action="#" method="POST" class="col-sm-4 offset-sm-4" id="myform">
+        <label for="">Name: </label>
+        <div class="input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+            <input type="text" class="form-control" name="name" id="name" placeholder="">
+        </div>
+        <label for="">Address: </label>
+        <div class="input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+            <input type="text" class="form-control" name="address" id="address" placeholder="">
+        </div>
+        <label for="">Phone: </label>
+        <div class="input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-phone"></i></span>
+            <input type="text" class="form-control" name="phone" id="phone" placeholder="">
+        </div>
+        <label for="">Email: </label>
+        <div class="input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+            <input data-validation="email" type="email" class="form-control" name="email" id="email" placeholder="">
+        </div>
+        <label for="">Age: </label>
+        <div class="input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-gift"></i></span>
+            <input type="number" class="form-control" name="age" id="age" placeholder="">
+        </div>
+        <br />
+        <input name="submit" id="submit" class="btn btn-primary offset-sm-5" type="submit" value="Submit">
+        </div>
+    </form>
+
+    <script>
+        $("#name").focusout(function () {
+            var name = $(this);
+            if ($.trim(name.val()) == "") {
+                name.removeClass("is-valid");
+                name.addClass("is-invalid");
+            }else{
+                name.removeClass("is-invalid");
+                name.addClass("is-valid");
+            }
+        });
+
+        $("#address").focusout(function () {
+            var name = $(this);
+            if ($.trim(name.val()) == "") {
+                name.removeClass("is-valid");
+                name.addClass("is-invalid");
+            }else{
+                name.removeClass("is-invalid");
+                name.addClass("is-valid");
+            }
+        });
+
+        $("#phone").focusout(function () {
+            var name = $(this);
+            if ($.trim(name.val()) == "") {
+                name.removeClass("is-valid");
+                name.addClass("is-invalid");
+            }else{
+                name.removeClass("is-invalid");
+                name.addClass("is-valid");
+            }
+        });
+
+        $("#email").focusout(function () {
+            var name = $(this);
+            if ($.trim(name.val()) == "") {
+                name.removeClass("is-valid");
+                name.addClass("is-invalid");
+            }else{
+                name.removeClass("is-invalid");
+                name.addClass("is-valid");
+            }
+        });
+
+        $("#age").focusout(function () {
+            var name = $(this);
+            if ($.trim(name.val()) == "") {
+                name.removeClass("is-valid");
+                name.addClass("is-invalid");
+            }else{
+                name.removeClass("is-invalid");
+                name.addClass("is-valid");
+            }
+        });
+
+        $("#submit").click(function () {
+            alert("Thank you for submission");
+        });
+    </script>
+
+</body>
+
+</html>
