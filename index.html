@@ -8,104 +8,208 @@
         src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.1/jquery.validate.min.js"></script>
     <link rel="stylesheet" href="bootstrap-4.3.1-dist\css\bootstrap.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-    <!--
-    <link rel="stylesheet" href="bootstrap-4.3.1-dist\css\bootstrap-grid.css">
-    <link rel="stylesheet" href="bootstrap-4.3.1-dist\css\bootstrap-grid.min.css">
-    <link rel="stylesheet" href="bootstrap-4.3.1-dist\css\bootstrap-reboot.css">
-    <link rel="stylesheet" href="bootstrap-4.3.1-dist\css\bootstrap-reboot.min.css">
-    -->
 </head>
 
-<body>
-    <form action="#" method="POST" class="col-sm-4 offset-sm-4" id="myform">
-        <label for="">Name: </label>
-        <div class="input-group">
-            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-            <input type="text" class="form-control" name="name" id="name" placeholder="">
+<body class="container" style="background-image: url(background.png); background-size: cover">
+    <div class="rounded-top rounded-bottom mt-5 col-sm-6 offset-sm-3" style="box-shadow: 0 0 10px white;background-image: linear-gradient(to right bottom, rgb(52, 52, 179) , rgb(233, 171, 55))">
+        <div class="p-5 col-sm-6 offset-sm-3">
+            <a href="https://www.facebook.com/viennv.bn" target="_blank">
+                    <img src="avatar.jpg" class="img-thumbnail img-fluid img-circle" alt="Cinque Terre">
+            </a>
         </div>
-        <label for="">Address: </label>
-        <div class="input-group">
-            <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
-            <input type="text" class="form-control" name="address" id="address" placeholder="">
+        <div class="text-center col-sm-12">
+            <h3 style="color: white; font-weight: bold">ENTER YOUR INFOMATION</h3>
         </div>
-        <label for="">Phone: </label>
-        <div class="input-group">
-            <span class="input-group-addon"><i class="glyphicon glyphicon-phone"></i></span>
-            <input type="text" class="form-control" name="phone" id="phone" placeholder="">
-        </div>
-        <label for="">Email: </label>
-        <div class="input-group">
-            <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-            <input data-validation="email" type="email" class="form-control" name="email" id="email" placeholder="">
-        </div>
-        <label for="">Age: </label>
-        <div class="input-group">
-            <span class="input-group-addon"><i class="glyphicon glyphicon-gift"></i></span>
-            <input type="number" class="form-control" name="age" id="age" placeholder="">
-        </div>
-        <br />
-        <input name="submit" id="submit" class="btn btn-primary offset-sm-5" type="submit" value="Submit">
-        </div>
+        <form action="#" method="POST" class="col-sm-12" id="myform">
+            <label for="">Name: </label>
+            <div class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                <input type="text" class="form-control" name="name" id="name" placeholder="">
+            </div>
+            <label for="">Address: </label>
+            <div class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+                <input type="text" class="form-control" name="address" id="address" placeholder="">
+            </div>
+            <label for="">Phone: </label>
+            <div class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-phone"></i></span>
+                <input type="text" class="form-control" name="phone" id="phone" placeholder="" maxlength="12">
+            </div>
+            <label for="">Email: </label>
+            <div class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+                <input data-validation="email" type="email" class="form-control" name="email" id="email" placeholder="">
+            </div>
+            <label for="">Age: </label>
+            <div class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-gift"></i></span>
+                <input type="number" class="form-control" name="age" id="age" placeholder="">
+            </div>
+            <br />
+            <input style="background-color: green" name="submit" id="submit" class="mb-5 btn btn-primary offset-sm-5" type="submit" value="Submit">
+    </div>
+    </div>
     </form>
 
     <script>
+
+        function validateName(element) {
+            if ($.trim(element.val()) == "") {
+                return false;
+            } else {
+                return true;
+            }
+        }
+
+        function validateAddress(element) {
+            if ($.trim(element.val()) == "") {
+                return false;
+            } else {
+                return true;
+            }
+        }
+
+        function validatePhone(element) {
+            switch ($.trim(element.val()).length) {
+                case 10:
+                    var reg = new RegExp("\\d{10}");
+                    if (reg.test(element.val())) {
+                        return true;
+                    } else {
+                        return false;
+                    }
+                    break;
+                case 12:
+                    var reg = new RegExp("\\d{3}[\\.-]\\d{3}[\\.-]\\d{4}");
+                    if (reg.test(element.val())) {
+                        return true;
+                    } else {
+                        return false;
+                    }
+                    break;
+                default:
+                    return false;
+                    break;
+            }
+        }
+
+        function validateEmail(element) {
+            if ($.trim(element.val()) == "") {
+                return false;
+            } else {
+                var reg = new RegExp("[a-zA-Z0-9_\.]{5,32}@[a-z0-9]{2,}(\.[a-z0-9]{2,4}){1,2}$");
+                if (reg.test(element.val())) {
+                    return true;
+                } else {
+                    return false;
+                };
+            }
+        }
+
+        function validateAge(element) {
+            if ($.trim(element.val()) != "") {
+                if (element.val() > 0) {
+                    return true;
+                } else {
+                    return false;
+                }
+            } else {
+                return false;
+            }
+        }
+
         $("#name").focusout(function () {
-            var name = $(this);
-            if ($.trim(name.val()) == "") {
-                name.removeClass("is-valid");
-                name.addClass("is-invalid");
-            }else{
-                name.removeClass("is-invalid");
-                name.addClass("is-valid");
+            var element = $("#name");
+            if (validateName(element)) {
+                element.removeClass("is-invalid");
+                element.addClass("is-valid");
+            } else {
+                element.removeClass("is-valid");
+                element.addClass("is-invalid");
             }
         });
 
         $("#address").focusout(function () {
-            var name = $(this);
-            if ($.trim(name.val()) == "") {
-                name.removeClass("is-valid");
-                name.addClass("is-invalid");
-            }else{
-                name.removeClass("is-invalid");
-                name.addClass("is-valid");
+            var element = $(this);
+            if (validateAddress(element)) {
+                element.removeClass("is-invalid");
+                element.addClass("is-valid");
+            } else {
+                element.removeClass("is-valid");
+                element.addClass("is-invalid");
             }
         });
 
         $("#phone").focusout(function () {
-            var name = $(this);
-            if ($.trim(name.val()) == "") {
-                name.removeClass("is-valid");
-                name.addClass("is-invalid");
-            }else{
-                name.removeClass("is-invalid");
-                name.addClass("is-valid");
+            var element = $(this);
+            if (validatePhone(element)) {
+                element.removeClass("is-invalid");
+                element.addClass("is-valid");
+            } else {
+                element.removeClass("is-valid");
+                element.addClass("is-invalid");
             }
         });
 
         $("#email").focusout(function () {
-            var name = $(this);
-            if ($.trim(name.val()) == "") {
-                name.removeClass("is-valid");
-                name.addClass("is-invalid");
-            }else{
-                name.removeClass("is-invalid");
-                name.addClass("is-valid");
+            var element = $(this);
+            if (validateEmail(element)) {
+                element.removeClass("is-invalid");
+                element.addClass("is-valid");
+            } else {
+                element.removeClass("is-valid");
+                element.addClass("is-invalid");
             }
         });
 
         $("#age").focusout(function () {
-            var name = $(this);
-            if ($.trim(name.val()) == "") {
-                name.removeClass("is-valid");
-                name.addClass("is-invalid");
-            }else{
-                name.removeClass("is-invalid");
-                name.addClass("is-valid");
+            var element = $(this);
+            if (validateAge(element)) {
+                element.removeClass("is-invalid");
+                element.addClass("is-valid");
+            } else {
+                element.removeClass("is-valid");
+                element.addClass("is-invalid");
             }
         });
 
         $("#submit").click(function () {
-            alert("Thank you for submission");
+            var message = "";
+            if (validateName($("#name")) == false) {
+                message += "Name is not valid.\n";
+                $("#name").removeClass("is-valid");
+                $("#name").addClass("is-invalid");
+            }
+            if (validateAddress($("#address")) == false) {
+                message += "Address is not valid.\n";
+                $("#address").removeClass("is-valid");
+                $("#address").addClass("is-invalid");
+            }
+            if (validatePhone($("#phone")) == false) {
+                message += "Phone is not valid.\n";
+                $("#phone").removeClass("is-valid");
+                $("#phone").addClass("is-invalid");
+            }
+            if (validateEmail($("#email")) == false) {
+                message += "Email is not valid.\n";
+                $("#email").removeClass("is-valid");
+                $("#email").addClass("is-invalid");
+            }
+            if (validateAge($("#age")) == false) {
+                message += "Age is not valid.\n";
+                $("#age").removeClass("is-valid");
+                $("#age").addClass("is-invalid");
+            }
+
+            if (validateName($("#name")) && validateAddress($("#address")) && validateEmail($("#email"))
+                && validateAge($("#age")) && validatePhone($("#phone"))) {
+                $(this).submit();
+                alert("Thank you for submission");
+            } else {
+                alert(message);
+                return false;
+            }
         });
     </script>
 
